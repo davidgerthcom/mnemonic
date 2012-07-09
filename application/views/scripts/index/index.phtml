@@ -1,23 +1,28 @@
 <?php
 $this->title = "My Albums";
 $this->headTitle($this->title);
+echo $this->headLink()->prependStylesheet($this->baseUrl().'/styles/index/index.css');
 ?>
 <p><a href="<?php echo $this->url(array('controller'=>'index',
         'action'=>'add'));?>">Add new album</a></p>
-<table>
-<tr>
-    <th>Title</th>
-    <th>Artist</th>
-    <th>&nbsp;</th>
-</tr>
+
+<div id="navigation-box">
+    <a class="border-radius" href="">1</a>
+    <a class="border-radius" href="">2</a>
+    <a class="border-radius" href="">3</a>
+    <a class="border-radius" href="">4</a>
+    <a class="border-radius" href="">5</a>
+    <a class="border-radius" href="">6</a>
+    <a class="border-radius" href="">7</a>
+    <a class="border-radius" href="">8</a>
+</div>
+
 <?php foreach($this->albums as $album) : ?>
-<tr>
-    <td><?php echo $this->escape($album->title);?></td>
-    <td><?php echo $this->escape($album->artist);?></td>
-<td>
+    <?php echo $this->escape($album->title);?>
+    <?php echo $this->escape($album->artist);?>
+
     <a href="<?php echo $this->url(array('controller'=>'index',
         'action'=>'edit', 'id'=>$album->id));?>">Edit</a>
     <a href="<?php echo $this->url(array('controller'=>'index',
             'action'=>'delete', 'id'=>$album->id));?>">Delete</a>
 <?php endforeach; ?>
-</table>
