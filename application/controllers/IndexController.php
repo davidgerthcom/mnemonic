@@ -12,6 +12,7 @@ class IndexController extends Zend_Controller_Action
     {
         $albums = new Application_Model_DbTable_Albums();
         $this->view->albums = $albums->fetchAll();
+        $this->_helper->layout->setLayout('mobile');
     }
 
     public function addAction()

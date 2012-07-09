@@ -1,0 +1,50 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Zend Framework Tutorial');
+echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+</head>
+<body>
+    <div data-role="page" id="start" data-theme="c">
+        <div data-role="header" data-position="inline">
+                <a href="#" data-icon="delete">Cancel</a>
+		<h1><?php echo $this->escape($this->title); ?></h1>
+                <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+	</div>
+	<div id="content" data-role="content">	
+		<?php echo $this->layout()->content; ?>
+	</div>
+        <div data-role="footer" class="ui-bar" data-position="fixed" data-id="foo1">
+            <div data-role="controlgroup" data-type="horizontal">
+                <a href="#dialog" data-role="button" data-icon="plus">Add</a>
+                <a href="#" data-role="button" data-icon="arrow-u">Up</a>
+                <a href="#" data-role="button" data-icon="arrow-d">Down</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Start of first page -->
+    <div data-role="page" id="dialog">
+
+            <div data-role="header">
+                    <h1>Dialog</h1>
+            </div><!-- /header -->
+
+            <div data-role="content">	
+                    <p>Dialog test</p>		
+                    <p>View internal page called <a href="#start">start</a></p>	
+            </div><!-- /content -->
+
+            <div data-role="footer" data-position="fixed" data-id="foo1">
+                    <h4>Page Footer</h4>
+            </div><!-- /footer -->
+    </div><!-- /page -->
+</body>
+</html>
