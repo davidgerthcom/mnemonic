@@ -1,5 +1,5 @@
 echo "Removing current mnemonic directory..."
-ssh david@192.168.h2.103 rm -rf /var/www/mnemonic
+ssh david@davidgerth.com rm -rf /var/www/mnemonic
 
 echo "Cloning git repository into davidgerth.com/var/www/mnemonic..."
 ssh david@davidgerth.com git clone https://github.com/davidgerthcom/mnemonic.git /var/www/mnemonic
