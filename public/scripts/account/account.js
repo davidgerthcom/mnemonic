@@ -1,15 +1,23 @@
+Account = function() {
+    return {
+        addForm: $('#account-add'),
+        setup: function() {
+            var account = this;
+            account.addForm.submit(function() {
+                account.add($(this).serialize());
+                
+                layout.loadContent($(this).attr('action'), 500);
+                return false;
+            });
+        },
+        add: function(data) {
+            alert(data);
+        }
+    }
+};
+
 $(document).ready(function() {
-    $('#layout-navigation').find('li').click(function() {
-        var href = $(this).data('href');
-        var fadeTime = 500;
-        
-        $('#layout-loader-div').fadeIn(fadeTime);
-        $('#layout-content-div').fadeOut(fadeTime, function() {
-            $('#layout-content-div').load(href, function() {
-                $('#layout-loader-div').fadeOut(fadeTime);
-                $('#layout-content-div').fadeIn(fadeTime);
-            });            
-        });
-    });
+    account = new Account();
+    account.setup();
 });
 

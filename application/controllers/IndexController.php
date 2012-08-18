@@ -10,8 +10,8 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $albums = new Application_Model_DbTable_Albums();
-        $this->view->albums = $albums->fetchAll();
+//        $albums = new Application_Model_DbTable_Albums();
+//        $this->view->albums = $albums->fetchAll();
 //        $this->_helper->layout()->disableLayout();
 //        $this->_helper->viewRenderer->setNoRender(true);
 //        $this->_helper->layout->setLayout('mobile');

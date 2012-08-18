@@ -1,1 +1,6 @@
-Account
+<script type="text/javascript" src="scripts/account/account.js"></script>
+<?php foreach($this->accounts as $account) : ?>
+<p><?php print($account['name']); ?></p>
+<?php endforeach; ?>
+<?php print($this->formAccountAdd); ?>
+<div id="hint-box"></div>

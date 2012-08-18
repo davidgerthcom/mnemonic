@@ -1,39 +1,37 @@
 <?php
 
-class Application_Model_DbTable_Albums extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
 {
 
-    protected $_name = 'albums';
+    protected $_name = 'accounts';
 
-    public function getAlbum($id)
+    public function getAccount($id)
     {
         $id = (int)$id;
         $row = $this->fetchRow('id = ' . $id);
         if (!$row) {
-            throw new Exception("Could not find row $id");
+            throw new Exception("Konto mit Nummer $id nicht gefunden.");
         }
         return $row->toArray();
     }
     
-    public function addAlbum($artist, $title)
+    public function addAccount($name)
     {
         $data = array(
-            'artist' => $artist,
-            'title' => $title,
+            'name' => $name
         );
         $this->insert($data);
     }
     
-    public function updateAlbum($id, $artist, $title)
+    public function updateAccount($id, $name)
     {
         $data = array(
-            'artist' => $artist,
-            'title' => $title,
+            'name' => $name
     );
         $this->update($data, 'id = '. (int)$id);
     }
     
-    public function deleteAlbum($id)
+    public function deleteAccount($id)
     {
         $this->delete('id =' . (int)$id);
     }
