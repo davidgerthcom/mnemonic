@@ -27,7 +27,15 @@ class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
     {
         $data = array(
             'name' => $name
-    );
+        );
+        $this->update($data, 'id = '. (int)$id);
+    }
+    
+    public function updateAccountStatus($id, $status)
+    {
+        $data = array(
+            'disabled' => $status
+        );
         $this->update($data, 'id = '. (int)$id);
     }
     

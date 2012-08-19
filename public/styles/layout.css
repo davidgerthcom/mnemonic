@@ -47,7 +47,8 @@ div {
 #layout-loader-div {
     left: 0;
     top: 100px;
-    height: 100%;
+    bottom: 50px;
+    height: 100%-150px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -83,4 +84,12 @@ div {
     border-top: 1px solid #000;
     border-right: 1px solid #000;
     display: inline-block;
+}
+
+.error-message {
+    color: #F00;
+}
+
+dt {
+    float: left;
 }

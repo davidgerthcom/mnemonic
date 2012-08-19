@@ -2,10 +2,14 @@
 
 class ErrorController extends Zend_Controller_Action
 {
-
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');
+        
+        if ($errors->exception instanceof Application_Model_AjaxException) {
+            $this->handleAjaxException($errors->exception);
+            return;
+        }
         
         if (!$errors || !$errors instanceof ArrayObject) {
             $this->view->message = 'You have reached the error page';
@@ -53,6 +57,11 @@ class ErrorController extends Zend_Controller_Action
         return $log;
     }
 
-
+    private function handleAjaxException(Application_Model_AjaxException $exception)
+    {
+        $this->_helper->viewRenderer->setNoRender(true);
+        $this->getResponse()->setHttpResponseCode(500);
+        print($exception->getMessage());
+    }
 }
 

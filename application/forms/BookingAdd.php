@@ -1,12 +1,12 @@
 <?php
 
-class Application_Form_AccountAdd extends Zend_Form
+class Application_Form_BookingAdd extends Zend_Form
 {
     public function init()
     {   
-        $this->setName('account-add');
+        $this->setName('booking-add');
         $this->setDecorators(array('FormElements','Form'));
-        $this->setAttrib('id', 'account-add');
+        $this->setAttrib('id', 'booking-add');
         
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('Name')

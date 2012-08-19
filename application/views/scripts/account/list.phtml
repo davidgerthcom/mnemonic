@@ -1,0 +1,15 @@
+<table>
+<?php foreach($this->accounts as $account) : ?>
+    <tr>
+        <td>
+            <?php print($this->AccountStatus($account->disabled)); ?>
+        </td>
+        <td>
+            <?php print($this->AccountEditForm($this->editAction, $account->id, $account->name)); ?>
+        </td>
+        <td>
+            <?php print($this->AccountStatusForm($this->statusAction, $account->id, $account->disabled)); ?>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

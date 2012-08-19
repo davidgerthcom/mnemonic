@@ -1,14 +1,14 @@
 <?php
 $this->title = "My Albums";
 $this->headTitle($this->title);
-echo $this->headLink()->prependStylesheet($this->baseUrl().'/styles/index/index.css');
+print($this->headLink()->prependStylesheet($this->baseUrl().'/styles/index/index.css'));
 ?>
 <div class="layout-div gradient-gray" id="layout-header-div">
     <ul id="layout-navigation">
-        <li data-href="<?php echo $this->baseUrl(); ?>/dashboard/index">Dashboard</li>
-        <li data-href="<?php echo $this->baseUrl(); ?>/account/index">Konten</li>
-        <li data-href="<?php echo $this->baseUrl(); ?>/buchungen">Buchungen</li>
-        <li data-href="<?php echo $this->baseUrl(); ?>/einstellungen">Einstellungen</li>
+        <li data-href="<?php print($this->url(array('controller'=>'dashboard','action'=>'index'))); ?>">Dashboard</li>
+        <li data-href="<?php print($this->url(array('controller'=>'account','action'=>'index'))); ?>">Konten</li>
+        <li data-href="<?php print($this->url(array('controller'=>'booking','action'=>'index'))); ?>">Buchungen</li>
+        <li data-href="<?php print($this->url(array('controller'=>'preferences','action'=>'index'))); ?>">Einstellungen</li>
     </ul>
 </div>
 <div class="layout-div" id="layout-loader-div"></div>

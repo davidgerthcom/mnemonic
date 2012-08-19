@@ -13,17 +13,24 @@ class AccountController extends Zend_Controller_Action
      */
     public function indexAction()
     {
+        $formAccountAdd = new Application_Form_AccountAdd();
+        $formAccountAdd->setAction($this->view->url(array('controller'=>'account','action'=>'add')));
         
+        $this->view->listUrl = $this->view->url(array('controller'=>'account','action'=>'list'));
+        $this->view->formAccountAdd = $formAccountAdd;
+    }
+    
+    /**
+     * 
+     */
+    public function listAction()
+    {
         $accounts = new Application_Model_DbTable_Accounts();
         
-        $formAccountAdd = new Application_Form_AccountAdd();
-        $formAccountAdd->setAction($this->view->url());
-        $formAccountAdd->setAttrib('data-action', $this->view->url(array('controller'=>'account','action'=>'add')));
-        
         $this->view->accounts = $accounts->fetchAll();
-        $this->view->formAccountAdd = $formAccountAdd;
         $this->view->editAction = $this->view->url(array('controller'=>'account','action'=>'edit'));
-    }
+        $this->view->statusAction = $this->view->url(array('controller'=>'account','action'=>'status'));
+    }            
 
     /**
      * 
@@ -35,11 +42,19 @@ class AccountController extends Zend_Controller_Action
         
         $formAccountAdd = new Application_Form_AccountAdd();
         if (!$formAccountAdd->isValid($arguments->getParams())) {
-            throw new Exception('Name benötigt');
+            $messages = array();
+            foreach ($formAccountAdd->getMessages() as $elementMessage) {
+                foreach ($elementMessage as $message) {
+                    array_push($messages, $message);
+                }
+            }
+            throw new Application_Model_AjaxException(implode(', ', $messages));
         }
         
         $accounts = new Application_Model_DbTable_Accounts();
-        $accounts->addAccount($arguments->getParam('name'));
+        //$accounts->addAccount($arguments->getParam('name'));
+        
+        print('Konto hinzugefügt');
     }
 
     /**
@@ -51,15 +66,36 @@ class AccountController extends Zend_Controller_Action
         $arguments = $this->getRequest();
         
         if (!$arguments->getParam('id')) {
-            throw new Exception('ID benötigt');
+            throw new Application_Model_AjaxException('ID benötigt');
         }
         
         if (!$arguments->getParam('name')) {
-            throw new Exception('Name benötigt');
+            throw new Application_Model_AjaxException('Name benötigt');
         }
           
         $accounts = new Application_Model_DbTable_Accounts();
         $accounts->updateAccount($arguments->getParam('id'), $arguments->getParam('name'));
+        
+        print('Konto gespeichert');
+    }
+
+    /**
+     * 
+     */
+    public function statusAction()
+    {
+        $this->_helper->viewRenderer->setNoRender(true);
+        $arguments = $this->getRequest();
+        
+        $formAccountStatus = new Application_Form_AccountStatus();
+        if (!$formAccountStatus->isValid($arguments->getParams())) {
+            throw new Application_Model_AjaxException('Es ist ein interner Fehler aufgetreten');
+        }
+          
+        $accounts = new Application_Model_DbTable_Accounts();
+        $accounts->updateAccountStatus($arguments->getParam('id'), $arguments->getParam('disabled'));
+        
+        print('Konto Status geändert');
     }
 }
 

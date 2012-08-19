@@ -1,19 +1,4 @@
 <script type="text/javascript" src="scripts/account/account.js"></script>
-<table>
-<?php foreach($this->accounts as $account) : ?>
-    <tr>
-        <td>
-            <form data-action="<?php print($this->editAction) ?>" class="account-edit" id="account-edit-<?php print($account['id']); ?>">
-                <input type="text" name="name" value="<?php print($account['name']); ?>" />
-                <input type="hidden" name="id" value="<?php print($account['id']); ?>" />
-                <input type="submit" value="Speichern" />
-            </form>
-        </td>
-        <td>
-            <a href="#">löschen</a>
-        </td>
-    </tr>
-<?php endforeach; ?>
-</table>
+<div id="account-message"></div>
+<div id="account-list" data-url="<?php print($this->listUrl) ?>"></div>
 <?php print($this->formAccountAdd); ?>
-<div id="hint-box"></div>
