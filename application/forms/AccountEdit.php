@@ -1,12 +1,12 @@
 <?php
 
-class Application_Form_AccountAdd extends Zend_Form
+class Application_Form_AccountEdit extends Zend_Form
 {
 
     public function init()
     {
-        $this->setName('account-add');
-        $this->setAttrib('id', 'account-add');
+        $this->setName('account-edit');
+        $this->setAttrib('class', 'account-edit');
         
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('Name')
