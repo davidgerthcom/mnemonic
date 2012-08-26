@@ -1,15 +1,15 @@
 <?php
 
-class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Periods extends Zend_Db_Table_Abstract
 {
-    protected $_name = 'accounts';
+    protected $_name = 'periods';
 
     public function get($id)
     {
         $id = (int)$id;
         $row = $this->fetchRow('id = ' . $id);
         if (!$row) {
-            throw new Exception("Konto mit Nummer $id nicht gefunden.");
+            throw new Exception("Zeitraum mit Nummer $id nicht gefunden.");
         }
         return $row->toArray();
     }
@@ -26,14 +26,6 @@ class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
     {
         $data = array(
             'name' => $name
-        );
-        $this->update($data, 'id = '. (int)$id);
-    }
-    
-    public function updateStatus($id, $status)
-    {
-        $data = array(
-            'disabled' => $status
         );
         $this->update($data, 'id = '. (int)$id);
     }

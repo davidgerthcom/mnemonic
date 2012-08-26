@@ -25,9 +25,9 @@ class BookingController extends Zend_Controller_Action
      */
     public function listAction()
     {
-//        $bookings = new Application_Model_DbTable_Bookings();
+        $bookings = new Application_Model_DbTable_Bookings();
         
-        $this->view->bookings = array(1,2,3);//$bookings->fetchAll();
+        $this->view->bookings = $bookings->fetchAll();
     }            
     
     /**
@@ -36,7 +36,28 @@ class BookingController extends Zend_Controller_Action
     public function addAction()
     {
         $this->_helper->viewRenderer->setNoRender(true);
-        print('AddAction');
+        $arguments = $this->getRequest();
+        
+        $formBookingAdd = new Application_Form_BookingAdd();
+        if (!$formBookingAdd->isValid($arguments->getParams())) {
+            $messages = array();
+            foreach ($formBookingAdd->getMessages() as $elementMessage) {
+                foreach ($elementMessage as $message) {
+                    array_push($messages, $message);
+                }
+            }
+            throw new Application_Model_AjaxException(implode(', ', $messages));
+        }
+        
+        $accounts = new Application_Model_DbTable_Bookings();
+        $accounts->add(
+            $arguments->getParam('description'),
+            $arguments->getParam('fromaccountid'),
+            $arguments->getParam('toaccountid'),
+            $arguments->getParam('amount')
+        );
+        
+        print('Buchung hinzugefügt');
     }            
 }
 

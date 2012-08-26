@@ -1,23 +1,28 @@
 <?php
 
-class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_RecurringBookings extends Zend_Db_Table_Abstract
 {
-    protected $_name = 'accounts';
+
+    protected $_name = 'recurring_bookings';
 
     public function get($id)
     {
         $id = (int)$id;
         $row = $this->fetchRow('id = ' . $id);
         if (!$row) {
-            throw new Exception("Konto mit Nummer $id nicht gefunden.");
+            throw new Exception("Vorgemerkte Buchung mit Nummer $id nicht gefunden.");
         }
         return $row->toArray();
     }
     
-    public function add($name)
+    public function add($description, $fromAccountId, $toAccountId, $amount)
     {
         $data = array(
-            'name' => $name
+            'description' => $description,
+            'from_account_id' => $fromAccountId,
+            'to_account_id' => $toAccountId,
+            'amount' => $amount,
+            'created' => new Zend_Db_Expr('CURRENT_TIMESTAMP')
         );
         $this->insert($data);
     }

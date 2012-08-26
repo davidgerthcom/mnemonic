@@ -1,12 +1,12 @@
 <?php
 
-class Application_Form_BookingAdd extends Zend_Form
+class Application_Form_RecurringBookingAdd extends Zend_Form
 {
     public function init()
     {   
-        $this->setName('booking-add');
+        $this->setName('recurring-booking-add');
         $this->setDecorators(array('FormElements','Form'));
-        $this->setAttrib('id', 'booking-add');
+        $this->setAttrib('id', 'recurring-booking-add');
         
         $description = new Zend_Form_Element_Text('description');
         $description->setLabel('Beschreibung')
@@ -17,7 +17,6 @@ class Application_Form_BookingAdd extends Zend_Form
                ->addErrorMessage('Beschreibung benötigt');
         
         $selectAccounts = $this->getAccountsForSelect();
-        
         $fromAccountId = new Zend_Form_Element_Select('fromaccountid');
         $fromAccountId->setLabel('Von Konto')
                ->setRequired(true)
@@ -40,11 +39,44 @@ class Application_Form_BookingAdd extends Zend_Form
                ->addValidator('Digits')
                ->addErrorMessage('Betrag ungültig');
         
+        $start = new Zend_Form_Element_Text('start');
+        $start->setLabel('Startzeitpunkt')
+               ->setRequired(true)
+               ->addFilter('StripTags')
+               ->addFilter('StringTrim')
+               ->addValidator('date', 'dd-MM-YYYY')
+               ->addErrorMessage('Startzeitpunkt ungültig');
+        
+        $end = new Zend_Form_Element_Text('end');
+        $end->setLabel('Endzeitpunkt')
+               ->setRequired(true)
+               ->addFilter('StripTags')
+               ->addFilter('StringTrim')
+               ->addValidator('date', 'dd-MM-YYYY')
+               ->addErrorMessage('Endzeitpunkt ungültig');
+                
+        $selectPeriods = $this->getPeriodsForSelect();
+        $period = new Zend_Form_Element_Select('period');
+        $period->setLabel('Zeitraum')
+               ->setRequired(true)
+               ->addValidator('NotEmpty')
+               ->addErrorMessage('Zeitraum benötigt')
+               ->addMultiOptions($selectPeriods);
+        
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('id', 'submitbutton');
         $submit->setLabel('Hinzufügen');
         
-        $this->addElements(array($description, $fromAccountId, $toAccountId, $amount, $submit));
+        $this->addElements(array(
+            $description,
+            $fromAccountId,
+            $toAccountId,
+            $amount,
+            $start,
+            $end,
+            $period,
+            $submit
+        ));
     }
     
     private function getAccountsForSelect()
@@ -57,5 +89,17 @@ class Application_Form_BookingAdd extends Zend_Form
         }
         
         return $selectAccounts;
+    }
+    
+    private function getPeriodsForSelect()
+    {
+        $selectPeriods = array();
+        
+        $periods = new Application_Model_DbTable_Periods();
+        foreach ($periods->fetchAll() as $period) {
+            $selectPeriods[$period->offsetGet('id')] = $period->offsetGet('description');
+        }
+        
+        return $selectPeriods;
     }
 }

@@ -8,6 +8,8 @@ print($this->headLink()->prependStylesheet($this->baseUrl().'/styles/index/index
         <li data-href="<?php print($this->url(array('controller'=>'dashboard','action'=>'index'))); ?>">Dashboard</li>
         <li data-href="<?php print($this->url(array('controller'=>'account','action'=>'index'))); ?>">Konten</li>
         <li data-href="<?php print($this->url(array('controller'=>'booking','action'=>'index'))); ?>">Buchungen</li>
+        <li data-href="<?php print($this->url(array('controller'=>'recurring-booking','action'=>'index'))); ?>">Wiederkehrende Buchungen</li>
+        <li data-href="<?php print($this->url(array('controller'=>'period','action'=>'index'))); ?>">Zeiträume</li>
         <li data-href="<?php print($this->url(array('controller'=>'preferences','action'=>'index'))); ?>">Einstellungen</li>
     </ul>
 </div>

@@ -1,0 +1,18 @@
+<table>
+<?php foreach($this->periods as $period) : ?>
+    <tr>
+        <td>
+            <?php print($period->description); ?>
+        </td>
+        <td>
+            <?php print($period->day); ?>
+        </td>
+        <td>
+            <?php print($period->month); ?>
+        </td>
+        <td>
+            <?php print($period->year); ?>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

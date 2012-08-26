@@ -52,7 +52,7 @@ class AccountController extends Zend_Controller_Action
         }
         
         $accounts = new Application_Model_DbTable_Accounts();
-        //$accounts->addAccount($arguments->getParam('name'));
+        $accounts->add($arguments->getParam('name'));
         
         print('Konto hinzugefügt');
     }
@@ -74,7 +74,7 @@ class AccountController extends Zend_Controller_Action
         }
           
         $accounts = new Application_Model_DbTable_Accounts();
-        $accounts->updateAccount($arguments->getParam('id'), $arguments->getParam('name'));
+        $accounts->update($arguments->getParam('id'), $arguments->getParam('name'));
         
         print('Konto gespeichert');
     }
@@ -93,7 +93,7 @@ class AccountController extends Zend_Controller_Action
         }
           
         $accounts = new Application_Model_DbTable_Accounts();
-        $accounts->updateAccountStatus($arguments->getParam('id'), $arguments->getParam('disabled'));
+        $accounts->updateStatus($arguments->getParam('id'), $arguments->getParam('disabled'));
         
         print('Konto Status geändert');
     }
