@@ -1,17 +1,26 @@
 <table>
-<?php foreach($this->bookings as $booking) : ?>
+<?php foreach($this->recurringBookings as $recurringBooking) : ?>
     <tr>
         <td>
-            <?php print($booking->description); ?>
+            <?php print($recurringBooking->description); ?>
         </td>
         <td>
-            <?php print($booking->from_account_id); ?>
+            <?php print($recurringBooking->from_account_id); ?>
         </td>
         <td>
-            <?php print($booking->to_account_id); ?>
+            <?php print($recurringBooking->to_account_id); ?>
         </td>
         <td>
-            <?php print($booking->amount); ?>
+            <?php print($recurringBooking->amount); ?>
+        </td>
+        <td>
+            <?php print($recurringBooking->start); ?>
+        </td>
+        <td>
+            <?php print($recurringBooking->end); ?>
+        </td>
+        <td>
+            <?php print($recurringBooking->period); ?>
         </td>
     </tr>
 <?php endforeach; ?>

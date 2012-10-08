@@ -14,19 +14,22 @@ class Application_Model_DbTable_RecurringBookings extends Zend_Db_Table_Abstract
         }
         return $row->toArray();
     }
-    
-    public function add($description, $fromAccountId, $toAccountId, $amount)
+
+    public function add($description, $fromAccountId, $toAccountId, $amount, $start, $end, $period)
     {
         $data = array(
             'description' => $description,
             'from_account_id' => $fromAccountId,
             'to_account_id' => $toAccountId,
             'amount' => $amount,
-            'created' => new Zend_Db_Expr('CURRENT_TIMESTAMP')
+            'created' => new Zend_Db_Expr('CURRENT_TIMESTAMP'),
+            'start' => $start,
+            'end' => $end,
+            'period' => $period
         );
         $this->insert($data);
     }
-    
+
     public function update($id, $name)
     {
         $data = array(
@@ -34,7 +37,7 @@ class Application_Model_DbTable_RecurringBookings extends Zend_Db_Table_Abstract
         );
         $this->update($data, 'id = '. (int)$id);
     }
-    
+
     public function updateStatus($id, $status)
     {
         $data = array(
@@ -42,7 +45,7 @@ class Application_Model_DbTable_RecurringBookings extends Zend_Db_Table_Abstract
         );
         $this->update($data, 'id = '. (int)$id);
     }
-    
+
     public function delete($id)
     {
         $this->delete('id =' . (int)$id);

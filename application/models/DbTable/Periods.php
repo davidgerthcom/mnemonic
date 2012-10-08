@@ -13,15 +13,18 @@ class Application_Model_DbTable_Periods extends Zend_Db_Table_Abstract
         }
         return $row->toArray();
     }
-    
-    public function add($name)
+
+    public function add($description, $day, $month, $year)
     {
         $data = array(
-            'name' => $name
+            'description' => $description,
+            'day' => $day,
+            'month' => $month,
+            'year' => $year
         );
         $this->insert($data);
     }
-    
+
     public function update($id, $name)
     {
         $data = array(
@@ -29,7 +32,7 @@ class Application_Model_DbTable_Periods extends Zend_Db_Table_Abstract
         );
         $this->update($data, 'id = '. (int)$id);
     }
-    
+
     public function delete($id)
     {
         $this->delete('id =' . (int)$id);

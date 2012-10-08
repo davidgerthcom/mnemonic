@@ -1,27 +1,24 @@
-Booking = function() {
+Dashboard = function() {
     return {
         listElement: function() {
-            return $('#booking-list');
+            return $('#dashboard-monthly-overview');
         },
         messageElement: function() {
-            return $('#booking-message');
+            return $('#dashboard-message');
         },
         submitTriggerForms: function() {
             return [
-                $('#booking-add')
             ];
         },
         submitTriggerFormsReload: function() {
             return [
-                
             ];
         }
     }
 };
 
 $(document).ready(function() {
-    booking = new Booking();
-    layout.setupDataModel(booking);
-    layout.drawList(booking);
+    dashboard = new Dashboard();
+    layout.setupDataModel(dashboard);
+    layout.drawList(dashboard);
 });
-

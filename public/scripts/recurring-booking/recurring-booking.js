@@ -1,27 +1,27 @@
-Booking = function() {
+RecurringBooking = function() {
     return {
         listElement: function() {
-            return $('#booking-list');
+            return $('#recurring-booking-list');
         },
         messageElement: function() {
-            return $('#booking-message');
+            return $('#recurring-booking-message');
         },
         submitTriggerForms: function() {
             return [
-                $('#booking-add')
+                $('#recurring-booking-add')
             ];
         },
         submitTriggerFormsReload: function() {
             return [
-                
+
             ];
         }
     }
 };
 
 $(document).ready(function() {
-    booking = new Booking();
-    layout.setupDataModel(booking);
-    layout.drawList(booking);
+    recurringBooking = new RecurringBooking();
+    layout.setupDataModel(recurringBooking);
+    layout.drawList(recurringBooking);
 });
 

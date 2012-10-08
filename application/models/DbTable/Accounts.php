@@ -13,7 +13,7 @@ class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
         }
         return $row->toArray();
     }
-    
+
     public function add($name)
     {
         $data = array(
@@ -21,7 +21,7 @@ class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
         );
         $this->insert($data);
     }
-    
+
     public function update($id, $name)
     {
         $data = array(
@@ -29,7 +29,7 @@ class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
         );
         $this->update($data, 'id = '. (int)$id);
     }
-    
+
     public function updateStatus($id, $status)
     {
         $data = array(
@@ -37,7 +37,7 @@ class Application_Model_DbTable_Accounts extends Zend_Db_Table_Abstract
         );
         $this->update($data, 'id = '. (int)$id);
     }
-    
+
     public function delete($id)
     {
         $this->delete('id =' . (int)$id);

@@ -1,27 +1,27 @@
-Booking = function() {
+Period = function() {
     return {
         listElement: function() {
-            return $('#booking-list');
+            return $('#period-list');
         },
         messageElement: function() {
-            return $('#booking-message');
+            return $('#period-message');
         },
         submitTriggerForms: function() {
             return [
-                $('#booking-add')
+                $('#period-add')
             ];
         },
         submitTriggerFormsReload: function() {
             return [
-                
+
             ];
         }
     }
 };
 
 $(document).ready(function() {
-    booking = new Booking();
-    layout.setupDataModel(booking);
-    layout.drawList(booking);
+    period = new Period();
+    layout.setupDataModel(period);
+    layout.drawList(period);
 });
 
